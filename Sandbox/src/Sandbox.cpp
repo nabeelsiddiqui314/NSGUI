@@ -1,11 +1,11 @@
+#include <NSGUI.h>
 
-namespace nsgui {
+class Sandbox : public nsgui::Application {
+	void run() override {
+		while (true) {}
+	}
+};
 
-	_declspec(dllimport) void test();
-}
-
-int main() {
-	nsgui::test();
-
-	return 0;
+nsgui::Application* nsgui::createApplication() {
+	return new Sandbox();
 }
