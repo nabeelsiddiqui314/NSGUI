@@ -6,10 +6,14 @@ namespace nsgui {
 	class NSGUI_API Application
 	{
 	public:
-		Application() = default;
+		Application();
 		virtual ~Application() {}
 	public:
-		virtual void run() = 0;
+		virtual void onInit();
+		void run();
+
+	private:
+		
 	};
 
 	Application* createApplication();
