@@ -30,12 +30,18 @@
     <ClInclude Include="src\NSGUI\AppWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\NSGUI\Widget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\NSGUI\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\NSGUI\AppWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NSGUI\Widget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
