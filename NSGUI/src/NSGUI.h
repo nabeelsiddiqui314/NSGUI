@@ -1,7 +1,7 @@
 #pragma once
 
-#include "NSGUI/EntryPoint.h"
+#include "NSGUI/core/EntryPoint.h"
 
 #define NSGUI_INIT_APPLICATION(x) nsgui::Application* nsgui::createApplication() { return new x(); }
 
-#include "NSGUI/Application.h"
+#include "NSGUI/core/Application.h"

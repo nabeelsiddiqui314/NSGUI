@@ -1,15 +1,16 @@
 #pragma once
-#include "Core.h"
+#include "core/Core.h"
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Event.hpp>
+#include <vector>
 
 namespace nsgui {
 
 	class NSGUI_API Widget
 	{
 	public:
-		Widget() = default;
-		virtual ~Widget() {}
+		Widget(Widget* parent);
+		virtual ~Widget();
 	public:
 		void setPosition(const sf::Vector2f& pos);
 		const sf::Vector2f& getPosition() const;
@@ -17,9 +18,15 @@ namespace nsgui {
 
 		void setSize(const sf::Vector2f& size);
 		const sf::Vector2f& getSize() const;
-
-		void onEvent(const sf::Event& evnt);
+		
+		virtual void onEvent(const sf::Event& evnt);
 	protected:
+		void addChild(Widget* child);
+		void discardChild(Widget* child);
+		void discardChildren();
+
+		virtual bool onAdd(Widget* child) { return true; }
+
 		virtual void onMouseMove(int x, int y) {}
 		virtual void onMouseClick(int x, int y, const sf::Mouse::Button& button) {}
 		virtual void onMouseRelease(int x, int y, const sf::Mouse::Button& button) {}
@@ -31,6 +38,9 @@ namespace nsgui {
 	private:
 		sf::Vector2f m_position;
 		sf::Vector2f m_size;
+
+		Widget* m_parent;
+		std::vector<Widget*> m_children;
 
 		bool m_didContainCursor = false;
 	};

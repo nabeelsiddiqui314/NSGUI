@@ -2,6 +2,11 @@
 #include <SFML/Graphics/Rect.hpp>
 
 namespace nsgui {
+	Widget::Widget(Widget* parent) : m_parent(parent) {}
+
+	Widget::~Widget() {
+		discardChildren();
+	}
 
 	void Widget::setPosition(const sf::Vector2f& pos) {
 		m_position = pos;
@@ -12,7 +17,13 @@ namespace nsgui {
 	}
 
 	const sf::Vector2f Widget::getAbsolutePosition() const {
-		return m_position; // temporary ; will implement fully after adding parental support.
+		if(!m_parent)
+			return m_position;
+
+		auto& parentPos = m_parent->getPosition();
+		sf::Vector2f position = {getPosition().x + parentPos.x, getPosition().y + parentPos.y };
+
+		return position;
 	}
 
 	void Widget::setSize(const sf::Vector2f& size) {
@@ -55,6 +66,30 @@ namespace nsgui {
 		case sf::Event::TextEntered:
 			onTextEnter(evnt.text);
 			break;
+		}
+	}
+
+	void Widget::addChild(Widget* child) {
+		auto iter = std::find(m_children.begin(), m_children.end(), child);
+
+		if (iter != m_children.end() && onAdd(child)) {
+			m_children.emplace_back(child);
+		}
+	}
+
+	void Widget::discardChild(Widget* child) {
+		auto iter = std::find(m_children.begin(), m_children.end(), child);
+
+		if (iter != m_children.end()) {
+			delete *iter;
+			m_children.erase(iter);
+		}
+	}
+
+	void Widget::discardChildren() {
+		for (auto iter = m_children.begin(); iter != m_children.end(); iter++) {
+			delete *iter;
+			iter = m_children.erase(iter);
 		}
 	}
 

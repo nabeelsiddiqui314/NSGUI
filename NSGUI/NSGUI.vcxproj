@@ -11,16 +11,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\NSGUI\AppWindow.h" />
+    <ClInclude Include="src\NSGUI\core\AppWindow.h" />
     <ClInclude Include="src\NSGUI.h" />
-    <ClInclude Include="src\NSGUI\Application.h" />
-    <ClInclude Include="src\NSGUI\Core.h" />
-    <ClInclude Include="src\NSGUI\EntryPoint.h" />
+    <ClInclude Include="src\NSGUI\core\Application.h" />
+    <ClInclude Include="src\NSGUI\core\Core.h" />
+    <ClInclude Include="src\NSGUI\core\EntryPoint.h" />
     <ClInclude Include="src\NSGUI\Widget.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\NSGUI\AppWindow.cpp" />
-    <ClCompile Include="src\NSGUI\Application.cpp" />
+    <ClCompile Include="src\NSGUI\core\AppWindow.cpp" />
+    <ClCompile Include="src\NSGUI\core\Application.cpp" />
     <ClCompile Include="src\NSGUI\Widget.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
