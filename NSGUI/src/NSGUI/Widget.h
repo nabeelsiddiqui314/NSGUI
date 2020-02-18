@@ -19,7 +19,7 @@ namespace nsgui {
 		void setSize(const sf::Vector2f& size);
 		const sf::Vector2f& getSize() const;
 		
-		virtual void onEvent(const sf::Event& evnt);
+		virtual void processEvents(const sf::Event& evnt);
 	protected:
 		void addChild(Widget* child);
 		void discardChild(Widget* child);

@@ -34,7 +34,7 @@ namespace nsgui {
 		return m_size;
 	}
 
-	void Widget::onEvent(const sf::Event& evnt) {
+	void Widget::processEvents(const sf::Event& evnt) {
 		switch (evnt.type) {
 		case sf::Event::MouseMoved:
 			onMouseMove(evnt.mouseMove.x, evnt.mouseMove.y);
@@ -66,6 +66,10 @@ namespace nsgui {
 		case sf::Event::TextEntered:
 			onTextEnter(evnt.text);
 			break;
+		}
+
+		for (auto& child : m_children) {
+			child->processEvents(evnt);
 		}
 	}
 
